@@ -44,8 +44,25 @@ right: 0px;
 }
 
 #buttonContainer{
+    width: 50%;
+    height: 12vh;
     margin-top: 50px;
-    display: flex;  
+}
+
+#startButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameButton{
+    display: none;
+}
+
+
+#start{
+    display: flex;
+    float: left;
     justify-content: center;
     align-items: center;
     font-family: "Press start 2P";
@@ -53,24 +70,73 @@ right: 0px;
     background: url(startButton.png);
     background-size: contain;
     background-repeat: no-repeat;
-    width: 20%;
+    width: 36%;
     height: 12vh;
-    
 }
 
-#buttonContainer h1{
+#start:hover{
+    background: url(startClicked.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36%;
+    height: 12vh;
+    cursor: pointer;
+}
+
+
+#mercy{
+    display: flex;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    font-family: "Press start 2P";
+    color: var(--textColor);
+    background: url(mercyButton.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36%;
+    height: 12vh;
+}
+#mercy:hover{
+    background: url(mercyClicked.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36%;
+    height: 12vh;
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
+#endless{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    font-family: "Press start 2P";
+    color: var(--textColor);
+    background: url(endlessButton.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36%;
+    height: 12vh;
+}
+#endless:hover{
+    background: url(endlessClicked.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36%;
+    height: 12vh;
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
+
+h1{
     margin: 0;
     font-size: 4vh;
 }
 
-#buttonContainer:hover{
-    background: url(startClicked.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 20%;
-    height: 12vh;
-    cursor: pointer;
-}
+
 
 
 
