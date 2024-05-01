@@ -1,5 +1,6 @@
 :root{
     --primaryColor: #4F2770;
+    --secondaryColor: #efe9e7;
     --textColor: #fff;
 }
 
@@ -8,11 +9,14 @@ body{
 }
 
 #stars{
-position: absolute;
+position: fixed;
 background: url(stars.png);
 background-size: 100vh;
 width: 100%;
+min-width: 100%;
+max-width: 100%;
 height: 80%;
+z-index: -1;
 }
 
 #key{
@@ -21,6 +25,7 @@ height: 80%;
 
 .title{
     display: flex;
+    margin-top: 25px;
     justify-content: center;
     font-size: 25vh;
     font-family: "Press Start 2P";
@@ -29,7 +34,7 @@ height: 80%;
 
 
 #footer{
-position: absolute;
+position: fixed;
 background: url(footer.png);
 background-size: cover;
 width: 100%;
@@ -37,5 +42,35 @@ height: 15%;
 top: 85%;
 right: 0px;
 }
+
+#buttonContainer{
+    margin-top: 50px;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    font-family: "Press start 2P";
+    color: var(--textColor);
+    background: url(startButton.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20%;
+    height: 12vh;
+    
+}
+
+#buttonContainer h1{
+    margin: 0;
+    font-size: 4vh;
+}
+
+#buttonContainer:hover{
+    background: url(startClicked.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20%;
+    height: 12vh;
+    cursor: pointer;
+}
+
 
 
