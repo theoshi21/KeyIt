@@ -8,6 +8,6 @@ function mercy(){
 }
 
 function endless(){
-    alert("Not yet done.");
+    window.location.href = "endless/endless.html";
 }
 
