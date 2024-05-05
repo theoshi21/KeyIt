@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<button id="mercyTest" onclick="starAppear()">Mercy</button>
+	<button id="mercyTest" onclick="mouseGame()">Mercy</button>
 	<div class="gameScreen">
 		<div class="gameHeader">
 			<div class="leftContent">
@@ -21,13 +21,12 @@
 					<div class="mode">Mercy</div>
 			</div>
 			<div class="rightContent">
-					<div class="score">Score: 0000</div>
+					<div class="score" id="scoreDisp">Score: 0000</div>
 			</div>
 		</div>
 		<div id="gameBody">
-			<div id="object"> 
-				<div id="starImg" onclick="objectClick()"> </div>
-			</div>
+			<div id="btnContainer"><div id="playBtn" onclick="startMercy()"><h1>PLAY</h1></div></div>
+			<div id="object"></div>
 		</div>
 		
 	</div>
