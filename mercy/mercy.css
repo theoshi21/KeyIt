@@ -40,13 +40,42 @@ html{
   
   .gameHeader{
     width: 100%;
-    height: 10vh;
+    height: 10%;
     display: flex;
     justify-content: space-between;
     justify-content: flex-start;
   }
 
-  .gameBody{
+  #gameBody{
+    width: 98%;
+    height: 88%;
+    color: white;
+    display: flex;
+    margin: auto;
+  }
+
+  #object{
+    display: none;
+    border: 0px;
+    position: relative;
+    height: 10px;
+    width: 10px;
+  }
+
+  #starImg{
+    width: 100%;
+    height: 100%;
+    background: url(../category/star.png);
+    background-size: cover;
+    border: 0px;
+    cursor: pointer;
+    caret-color: transparent;
+  }
+
+  #starImg:hover{
+    background: url(../category/starClicked.png);
+    background-size:cover;
+    text-decoration: none;
   }
 
   .leftContent,
