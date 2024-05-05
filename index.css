@@ -25,7 +25,7 @@ z-index: -1;
 
 .title{
     display: flex;
-    margin-top: 25px;
+    margin-top: 5vh;
     justify-content: center;
     font-size: 25vh;
     font-family: "Press Start 2P";
@@ -40,16 +40,17 @@ background-size: cover;
 width: 100%;
 height: 15%;
 top: 85%;
-right: 0px;
+right: 0%;
 }
 
 #buttonContainer{
     width: 50%;
     height: 12vh;
-    margin-top: 50px;
+    margin-top: 5vh;
 }
 
 #startButton{
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,27 +60,25 @@ right: 0px;
     display: none;
 }
 
-
 #start{
     display: flex;
-    float: left;
     justify-content: center;
     align-items: center;
     font-family: "Press start 2P";
     color: var(--textColor);
     background: url(startButton.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    width: 36%;
-    height: 12vh;
+    width: 17vw;
+    height: 10vh;
 }
 
 #start:hover{
     background: url(startClicked.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    width: 36%;
-    height: 12vh;
+    width: 17vw;
+    height: 10vh;
     cursor: pointer;
 }
 
@@ -92,17 +91,18 @@ right: 0px;
     font-family: "Press start 2P";
     color: var(--textColor);
     background: url(mercyButton.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    width: 36%;
-    height: 12vh;
+    width: 17vw;
+    height: 10vh;
+    vertical-align: center;
 }
 #mercy:hover{
     background: url(mercyClicked.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    width: 36%;
-    height: 12vh;
+    width: 17vw;
+    height: 10vh;
     color: var(--primaryColor);
     cursor: pointer;
 }
@@ -115,17 +115,17 @@ right: 0px;
     font-family: "Press start 2P";
     color: var(--textColor);
     background: url(endlessButton.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    width: 36%;
-    height: 12vh;
+    width: 17vw;
+    height: 10vh;
 }
 #endless:hover{
     background: url(endlessClicked.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    width: 36%;
-    height: 12vh;
+    width: 17vw;
+    height: 10vh;
     color: var(--primaryColor);
     cursor: pointer;
 }
@@ -133,7 +133,7 @@ right: 0px;
 
 h1{
     margin: 0;
-    font-size: 4vh;
+    font-size: 3vh;
 }
 
 
