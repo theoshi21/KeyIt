@@ -77,8 +77,8 @@ html{
     background: url(../playButton.png);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 17vw;
-    height: 10vh;
+    width: 18vw;
+    height: 11vh;
     caret-color: transparent;
     cursor: pointer;
   }
@@ -87,8 +87,8 @@ html{
     background: url(../playClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 17vw;
-    height: 10vh;
+    width: 18vw;
+    height: 11vh;
   }
 
   #object{
