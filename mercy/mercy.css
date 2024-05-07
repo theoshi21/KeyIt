@@ -194,3 +194,13 @@ html{
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
+
+/*CSS FOR ARROW GAMES */
+.arrowImage {
+  position: absolute;
+  z-index: 2;
+  top: 40%;
+  left: 45%;
+  width: 10vw;
+  height: 10vw; 
+}

@@ -24,7 +24,7 @@ function randomCategory(){
         switch(game){
         case 1: mouseGame(); break;
         case 2: typingGame(); break; //should be typing
-        case 3: mouseGame(); break; //should be arrow
+        case 3: arrowGame(); break; //should be arrow
         }
     }
     else {
@@ -239,3 +239,58 @@ function removeInput() {
     }
 }
 //--- END OF TYPING CATEGORY
+
+//--- ARROW CATEGORY
+const arrowKeys = [
+    { key: 'ArrowLeft', image: '<img src="leftArrow.png" alt="leftArrow" class="arrowImage">' },
+    { key: 'ArrowDown', image: '<img src="downArrow.png" alt="downArrow" class="arrowImage">' },
+    { key: 'ArrowUp', image: '<img src="upArrow.png" alt="upArrow" class="arrowImage">' },
+    { key: 'ArrowRight', image: '<img src="rightArrow.png" alt="rightArrow" class="arrowImage">' }
+];
+function arrowGame(){
+    var arrowElement = document.getElementById("arrow"); //sa object ko kasi didisplay
+    var arrowDisplayed = Math.floor(Math.random() * 4); // 0-3 lang 'to
+    arrowElement.innerHTML = arrowKeys[arrowDisplayed].image;
+    document.addEventListener('keydown', handleKeyPress);
+}
+
+var sequence = 4;
+function handleKeyPress(event) {
+    var pressedKey = event.key;
+    // Find the arrow currently displayed by comparing its image with the content of the 'object' element
+    let arrowDisplayed = null;
+    for (let i = 0; i < arrowKeys.length; i++) {
+        if (arrowKeys[i].image === document.getElementById('arrow').innerHTML) {
+            arrowDisplayed = arrowKeys[i];
+            break; // Once found, exit the loop
+        }
+    }
+    // Check if an arrow is displayed and if the pressed key matches its key
+    if (arrowDisplayed && pressedKey === arrowDisplayed.key) {
+       if(sequence > 0){
+        sequence--;
+        removeArrow();
+        arrowGame();
+       }
+       else {
+        sequence = 4;
+        removeArrow();
+        document.removeEventListener('keydown', handleKeyPress);
+        randomCategory();
+        }
+       
+    } else {
+        lives--;
+        updateLife();
+        removeArrow();
+        document.removeEventListener('keydown', handleKeyPress);
+        randomCategory();
+    }
+}
+
+function removeArrow() {
+    const arrowElement = document.getElementById('arrow');
+    arrowElement.innerHTML = ''; // Remove the displayed arrow
+}
+
+//--- END OF ARROW CATEGORY
