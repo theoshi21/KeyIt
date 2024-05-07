@@ -23,7 +23,7 @@ function randomCategory(){
         let game = random(3,1)
         switch(game){
         case 1: mouseGame(); break;
-        case 2: mouseGame(); break; //should be typing
+        case 2: typingGame(); break; //should be typing
         case 3: mouseGame(); break; //should be arrow
         }
     }
@@ -33,6 +33,7 @@ function randomCategory(){
         document.getElementById("btnContainer").style.display = "flex";
         document.getElementById("playBtn").style.display = "none";
         document.getElementById("restartBtn").style.display = "flex";
+        document.getElementById("typingContainer").style.display = "none";
     }
 
 }
@@ -107,7 +108,7 @@ let objectTimer;
 function objectRandomizer(){
     if(running){
         object.style.display = "block";
-        objectTimer = setTimeout(objectDisappear, 1000); //Responsible for the how long the object appears.
+        objectTimer = setTimeout(objectDisappear, 2000); //Responsible for the how long the object appears.
         let width = objectSize()
         object.style.width = width+"%";
         object.style.height =  (width*2)+"%"; 
@@ -134,3 +135,107 @@ function objectClick(){
     randomCategory();
 }
 //--- END OF MOUSE CATEGORY CODE
+
+//--- TYPING CATEGORY
+function typingGame() {
+    document.getElementById("typingContainer").style.display = "flex";
+    let words = [
+        "pear", "fig", "lime", "kiwi", "plum", 
+        "lion", "mango", "apple", "grape", "cold", 
+        "wolf", "peach", "cat", "bird", "frog", 
+        "dog", "fish", "panda", "tiger", "zebra", 
+        "bear", "snake", "horse", "mouse", "ocean",
+        "tree", "cloud", "trail", "earth", "moon",
+        "star", "sun", "rain", "snow", "wind",
+        "fire", "rock", "gold", "coin", "ring",
+        "cake", "book", "pen", "door", "key",
+        "ship", "fish", "bird", "frog", "moon"
+    ]; //50 WORDS (3-5 LETTERS) CAN ADD MORE IF NEEDED
+
+    let currentWordIndex = Math.floor(Math.random() * words.length);
+    let currentWord = words[currentWordIndex];
+    let wordDisplay = document.getElementById("wordDisp");
+    wordDisplay.textContent = currentWord;
+    
+    createInput();
+
+    let typedWord = '';
+    let wordArray = currentWord.split('');
+    let typingTimer = setTimeout(() => {
+        lives--;
+        updateLife();
+        removeInput();
+        clearTyping();
+        randomCategory();
+    }, 2000);
+    
+    document.getElementById("userInput").addEventListener("input", function(event) {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+            lives--;
+            updateLife();
+            clearTyping();
+            clearTimeout(typingTimer);
+            randomCategory();
+        }, 2000);
+
+        let input = event.target.value.trim();
+        let typedChar = input.charAt(input.length - 1);
+        
+        if (currentWord.startsWith(typedWord + typedChar)) {
+            typedWord += typedChar;
+
+            let displayHTML = '';
+            for (let i = 0; i < wordArray.length; i++) {
+                if (i < typedWord.length) {
+                    if (typedWord.charAt(i) === wordArray[i]) {
+                        displayHTML += `<span style="color: green">${typedWord.charAt(i)}</span>`;
+                    } else {
+                        displayHTML += `<span style="color: red">${typedWord.charAt(i)}</span>`;
+                    }
+                } else {
+                    displayHTML += wordArray[i];
+                }
+            }
+            wordDisplay.innerHTML = displayHTML;
+
+            if (typedWord === currentWord) {
+                console.log('correct');
+                wordDisplay.textContent = currentWord;
+                clearTyping();
+                clearTimeout(typingTimer);
+                randomCategory();
+            }
+        } else {
+            lives--;
+            updateLife();
+            clearTyping();
+            clearTimeout(typingTimer);
+            alert('failed typing game');
+            randomCategory();
+        }
+    });
+}
+
+function createInput() {
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("id", "userInput");
+    input.setAttribute("autofocus", "autofocus");
+    document.getElementById("typingContainer").appendChild(input);
+    input.focus();
+}
+
+function clearTyping(){
+    let wordDisplay = document.getElementById("wordDisp");
+    removeInput();
+    wordDisplay.innerHTML = "";
+}
+
+function removeInput() {
+    var input = document.getElementById("userInput");
+    if (input) {
+        input.parentNode.removeChild(input);
+    }
+}
+//--- END OF TYPING CATEGORY
