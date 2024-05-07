@@ -107,7 +107,7 @@ let objectTimer;
 function objectRandomizer(){
     if(running){
         object.style.display = "block";
-        objectTimer = setTimeout(objectDisappear, 1000);
+        objectTimer = setTimeout(objectDisappear, 1000); //Responsible for the how long the object appears.
         let width = objectSize()
         object.style.width = width+"%";
         object.style.height =  (width*2)+"%"; 
