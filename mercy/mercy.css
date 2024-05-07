@@ -91,6 +91,29 @@ html{
     height: 5.5vw;
   }
 
+  #restartBtn{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: "Press start 2P";
+    color: var(--textColor);
+    background: url(../playButton.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 18vw;
+    height: 5.5vw;
+    caret-color: transparent;
+    cursor: pointer;
+  }
+
+  #restartBtn:hover{
+    background: url(../playClicked.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 18vw;
+    height: 5.5vw;
+  }
+
   #object{
     position: relative;
     height: 10px;

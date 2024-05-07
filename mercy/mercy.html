@@ -14,7 +14,7 @@
 	<div class="gameScreen">
 		<div class="gameHeader">
 			<div class="leftContent">
-					<div class="lives">Lives: <img src="heart.png" alt="life" class="heart"><img src="heart.png" alt="life" class="heart"><img src="heart.png" alt="life" class="heart"></div>
+					<div class="lives" id="life">Lives: <img src="heart.png" alt="life" class="heart"><img src="heart.png" alt="life" class="heart"><img src="heart.png" alt="life" class="heart"></div>
 			</div>
 			<div class="centerContent">
 					<div class="mode">Mercy</div>
@@ -24,9 +24,13 @@
 			</div>
 		</div>
 		<div id="gameBody">
-			<div id="btnContainer"><div id="playBtn" onclick="startMercy()"><h1>PLAY</h1></div></div>
+			<div id="btnContainer">
+				<div id="playBtn" onclick="startMercy()"><h1>PLAY</h1> </div>
+				<div id="restartBtn" onclick="restartGame()"><h1>RESTART</h1></div>
+			</div>
 			<div id="object"></div>
 		</div>
+		
 		
 	</div>
 	<div id="footer"></div>

@@ -1,19 +1,40 @@
 //--- FOR STARTING GAME
 var startTime, currentTime, endTime, running = true;
+var lives = 3;
 
 function startMercy(){
+    updateLife();
     startTimer();
     document.getElementById("btnContainer").style.display = "none";
     randomCategory();    
 }
 
+function updateLife(){
+    var disp = "Lives: ";
+    for(var i = 0; i < lives; i++){
+        disp += '<img src="heart.png" alt="life" class="heart"></img>'
+    }
+    document.getElementById('life').innerHTML = disp;
+}
+
 function randomCategory(){
-    let game = random(3,1)
-    switch(game){
+    console.log("Life is "+lives)
+    if(lives > 0){
+        let game = random(3,1)
+        switch(game){
         case 1: mouseGame(); break;
         case 2: mouseGame(); break; //should be typing
         case 3: mouseGame(); break; //should be arrow
+        }
     }
+    else {
+        console.log("dapat tapos nako dito")
+        endGame();
+        document.getElementById("btnContainer").style.display = "flex";
+        document.getElementById("playBtn").style.display = "none";
+        document.getElementById("restartBtn").style.display = "flex";
+    }
+
 }
 
 var timer;
@@ -44,6 +65,16 @@ function endGame(){
 
 //--- END OF STARTING GAME
 
+
+//---FUNCTIONS FOR BUTTONS
+function restartGame(){
+    startTime = null, currentTime = null, endTime = null, running = true;
+    lives = 3;
+    document.getElementById("playBtn").style.display = "flex";
+    document.getElementById("restartBtn").style.display = "none";
+}
+
+//---END OF FUNCTIONS FOR BUTTONS
 
 //---FOR MOUSE CATEGORY
 var gameBodyWidth = document.getElementById("gameBody").offsetWidth;
@@ -76,7 +107,7 @@ let objectTimer;
 function objectRandomizer(){
     if(running){
         object.style.display = "block";
-        objectTimer = setTimeout(objectDisappear, 3000);
+        objectTimer = setTimeout(objectDisappear, 1000);
         let width = objectSize()
         object.style.width = width+"%";
         object.style.height =  (width*2)+"%"; 
@@ -88,9 +119,11 @@ function objectRandomizer(){
 
 function objectDisappear(){
     if(!objectTimer) return;
+    lives--;
+    updateLife();
     object.style.display = "none";
     alert("u suck u didn't click me")
-    endGame();
+    randomCategory();
 }
 
 //Function for when the object is clicked
