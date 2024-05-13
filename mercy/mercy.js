@@ -1,7 +1,6 @@
 //--- FOR STARTING GAME
 var startTime, currentTime, endTime, running = true;
 var lives = 3;
-
 function startMercy(){
     updateLife();
     startTimer();
@@ -17,8 +16,31 @@ function updateLife(){
     document.getElementById('life').innerHTML = disp;
 }
 
+var initialTime = 10;
+var msTimeConverted = initialTime*1000;
+var timeleft = initialTime;
+var downloadTimer;
+document.getElementById('countdown').innerHTML = initialTime;
+function countdownTimer(){
+    downloadTimer = setInterval(function() {
+        if (timeleft < 1) {
+            document.getElementById("countdown").innerHTML = timeleft;
+            clearInterval(downloadTimer); 
+        } else {
+            document.getElementById("countdown").innerHTML = timeleft;
+        }
+        timeleft -= 1;
+    }, 1000);
+}
+
+function resetCountdown(){
+    clearInterval(downloadTimer)
+    timeleft = initialTime;
+}
+
 function randomCategory(){
     console.log("Life is "+lives)
+    countdownTimer();
     if(lives > 0){
         let game = random(3,1)
         switch(game){
@@ -61,16 +83,33 @@ function endGame(){
     running = false;
     endTime = currentTime;
     clearInterval(timer);
+    clearInterval(downloadTimer)
     alert("Game ended, your score was "+endTime);
 }
 
 //--- END OF STARTING GAME
 
 
+//--- FUNCTIONS FOR GAME PROGRESSION
+
+//changes the given time to finish a category by 1s every 10s but only until 1s
+    var gameProgression = setInterval(() => {
+        if(initialTime === 1){
+            clearInterval(gameProgression)
+        }
+        else initialTime -= 1;
+
+}, 10000)
+
+//--- END OF GAME PROGRESSION
+
+
 //---FUNCTIONS FOR BUTTONS
 function restartGame(){
     startTime = null, currentTime = null, endTime = null, running = true;
     lives = 3;
+    initialTime = 10;
+    resetCountdown();
     document.getElementById("playBtn").style.display = "flex";
     document.getElementById("restartBtn").style.display = "none";
 }
@@ -106,30 +145,28 @@ function mouseGame(){
 let objectTimer;
 //Makes the object appear on random places with random size.
 function objectRandomizer(){
-    if(running){
-        object.style.display = "block";
-        objectTimer = setTimeout(objectDisappear, 2000); //Responsible for the how long the object appears.
-        let width = objectSize()
-        object.style.width = width+"%";
-        object.style.height =  (width*2)+"%"; 
-        object.style.top = XPos()+"px";
-        object.style.left = YPos()+"px";
-    }
-
+    object.style.display = "block";
+    objectTimer = setTimeout(objectDisappear, msTimeConverted+1000); //Responsible for the how long the object appears.
+    let width = objectSize()
+    object.style.width = width+"%";
+    object.style.height =  (width*2)+"%"; 
+    object.style.top = XPos()+"px";
+    object.style.left = YPos()+"px";
 }
 
 function objectDisappear(){
     if(!objectTimer) return;
+    resetCountdown();
     lives--;
     updateLife();
     object.style.display = "none";
-    alert("u suck u didn't click me")
     randomCategory();
 }
 
 //Function for when the object is clicked
 function objectClick(){
     clearTimeout(objectTimer);
+    resetCountdown();
     objectTimer = null;
     object.style.display = "none";
     randomCategory();
@@ -166,8 +203,9 @@ function typingGame() {
         updateLife();
         removeInput();
         clearTyping();
+        resetCountdown();
         randomCategory();
-    }, 2000);
+    }, msTimeConverted+1000);
     
     document.getElementById("userInput").addEventListener("input", function(event) {
         clearTimeout(typingTimer);
@@ -175,9 +213,10 @@ function typingGame() {
             lives--;
             updateLife();
             clearTyping();
+            resetCountdown();
             clearTimeout(typingTimer);
             randomCategory();
-        }, 2000);
+        }, msTimeConverted+1000);
 
         let input = event.target.value.trim();
         let typedChar = input.charAt(input.length - 1);
@@ -200,18 +239,18 @@ function typingGame() {
             wordDisplay.innerHTML = displayHTML;
 
             if (typedWord === currentWord) {
-                console.log('correct');
                 wordDisplay.textContent = currentWord;
                 clearTyping();
                 clearTimeout(typingTimer);
+                resetCountdown();
                 randomCategory();
             }
         } else {
             lives--;
             updateLife();
             clearTyping();
+            resetCountdown();
             clearTimeout(typingTimer);
-            alert('failed typing game');
             randomCategory();
         }
     });
@@ -247,43 +286,61 @@ const arrowKeys = [
     { key: 'ArrowUp', image: '<img src="upArrow.png" alt="upArrow" class="arrowImage">' },
     { key: 'ArrowRight', image: '<img src="rightArrow.png" alt="rightArrow" class="arrowImage">' }
 ];
-function arrowGame(){
-    var arrowElement = document.getElementById("arrow"); //sa object ko kasi didisplay
-    var arrowDisplayed = Math.floor(Math.random() * 4); // 0-3 lang 'to
+var sequence = 4;
+
+var arrowTimeout;
+function arrowGame() {
+    arrowRandomizer();
+    arrowTimeout = setTimeout(function() {
+        document.removeEventListener('keydown', handleKeyPress);
+        console.log("Timeout: Sequence not completed within 10 seconds");
+        sequence = 4;
+        lives--;
+        updateLife();
+        removeArrow();
+        resetCountdown();
+        randomCategory();
+    }, msTimeConverted+1000); // 10 seconds in milliseconds
+}
+
+function arrowRandomizer(){
+    document.removeEventListener('keydown', handleKeyPress);
+    var arrowElement = document.getElementById("arrow");
+    var arrowDisplayed = Math.floor(Math.random() * 4);
     arrowElement.innerHTML = arrowKeys[arrowDisplayed].image;
     document.addEventListener('keydown', handleKeyPress);
 }
 
-var sequence = 4;
 function handleKeyPress(event) {
     var pressedKey = event.key;
-    // Find the arrow currently displayed by comparing its image with the content of the 'object' element
     let arrowDisplayed = null;
     for (let i = 0; i < arrowKeys.length; i++) {
         if (arrowKeys[i].image === document.getElementById('arrow').innerHTML) {
             arrowDisplayed = arrowKeys[i];
-            break; // Once found, exit the loop
+            break;
         }
     }
-    // Check if an arrow is displayed and if the pressed key matches its key
     if (arrowDisplayed && pressedKey === arrowDisplayed.key) {
-       if(sequence > 0){
         sequence--;
         removeArrow();
-        arrowGame();
-       }
-       else {
-        sequence = 4;
-        removeArrow();
-        document.removeEventListener('keydown', handleKeyPress);
-        randomCategory();
+        if (sequence === 0) {
+            document.removeEventListener('keydown', handleKeyPress);
+            clearTimeout(arrowTimeout); // Clear the timeout if the sequence is completed within time
+            console.log("Sequence completed within time");
+            sequence = 4;
+            removeArrow();
+            resetCountdown();
+            randomCategory();
+        } else {
+            arrowRandomizer();
         }
-       
     } else {
+        document.removeEventListener('keydown', handleKeyPress);
+        clearTimeout(arrowTimeout);
         lives--;
         updateLife();
         removeArrow();
-        document.removeEventListener('keydown', handleKeyPress);
+        resetCountdown();
         randomCategory();
     }
 }
