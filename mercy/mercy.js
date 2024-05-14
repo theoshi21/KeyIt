@@ -32,6 +32,7 @@ function updateLife(){
 }
 
 var initialTime = 10;
+var initialScore = 10;
 var msTimeConverted = initialTime*1000;
 var timeleft = initialTime;
 var downloadTimer;
@@ -45,12 +46,32 @@ function countdownTimer(){
             document.getElementById("countdown").innerHTML = timeleft;
         }
         timeleft -= 1;
+        initialScore -= 1;
     }, 1000);
 }
 
 function resetCountdown(){
     clearInterval(downloadTimer)
     timeleft = initialTime;
+    initialScore = 10;
+}
+
+var score = 0;
+function addScore(){
+    if(initialScore <= 10 && initialScore >= 9){
+        score += 20;
+    }
+    else if(initialScore < 9 && initialScore >= 7){
+        score+=10;
+    }
+    else if(initialScore < 7 && initialScore <= 3){
+        score+=5;
+    }
+    else{
+        score += 3;
+    }
+    document.getElementById("scoreDisp").innerHTML = "Score: "+score.toString().padStart(4,"0");
+
 }
 
 function randomCategory(){
@@ -80,7 +101,6 @@ function startTimer(){
     startTime = new Date()
     timer = setInterval(() => {
         currentTime = getTimerTime(startTime)
-        document.getElementById("scoreDisp").innerHTML = "Score: "+currentTime.toString().padStart(4,"0");
         console.log(currentTime);
     }, 1000)
 }
@@ -182,6 +202,7 @@ function objectDisappear(){
 //Function for when the object is clicked
 function objectClick(){
     clearTimeout(objectTimer);
+    addScore();
     resetCountdown();
     objectTimer = null;
     object.style.display = "none";
@@ -257,6 +278,7 @@ function typingGame() {
 
             if (typedWord === currentWord) {
                 wordDisplay.textContent = currentWord;
+                addScore();
                 clearTyping();
                 clearTimeout(typingTimer);
                 resetCountdown();
@@ -343,6 +365,7 @@ function handleKeyPress(event) {
         removeArrow();
         if (sequence === 0) {
             document.removeEventListener('keydown', handleKeyPress);
+            addScore();
             clearTimeout(arrowTimeout); // Clear the timeout if the sequence is completed within time
             console.log("Sequence completed within time");
             sequence = 4;
