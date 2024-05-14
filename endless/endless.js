@@ -101,8 +101,9 @@ var level = 1;
 
 //---FUNCTIONS FOR BUTTONS
 function restartGame(){
-    startTime = null, currentTime = null, endTime = null, running = true;
-    lives = 3;
+    startTime = null, currentTime = null, endTime = null, alive = true;
+    level = 1;
+    document.getElementById("levelDisp").innerHTML = "Level "+level;
     initialTime = 10;
     resetCountdown();
     document.getElementById("playBtn").style.display = "flex";
