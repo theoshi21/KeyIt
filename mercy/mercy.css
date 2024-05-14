@@ -24,19 +24,33 @@ html{
     right: 0px;
     }
   
-  .gameScreen{
-    width: 75vw;
-    height: 75vh;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border: 1vh solid purple;
-    background-color: black;
-    border-radius: 2vw;
-    caret-color: transparent;
+    .gameScreen{
+      width: 75vw;
+      height: 75vh;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1vh solid purple;
+      background-color: black;
+      border-radius: 2vw;
+      caret-color: transparent;
+    
+    animation: glow 2.5s infinite;
+    }
+    
+    @keyframes  glow {
+    0% {
+       box-shadow: 0 0 60px 15px pink;
+    }
+    50% {
+      box-shadow: none;
+    }
+    100% {
+     box-shadow: 0 0 60px 15px pink;
+    }
   }
   
   .gameHeader{

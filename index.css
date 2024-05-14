@@ -25,9 +25,16 @@ left: 0px;
     margin-top: 5vh;
     justify-content: center;
     font-size: 25vh;
-    font-family: "Press Start 2P";
-    color: var(--textColor);
+    font-family: "Press Start 2P";	
+	color: red;
+    text-shadow: -0.03em -0.03em 0 white,  
+    0.03em -0.03em 0 white,
+    -0.03em 0.03em 0 white,
+    0.03em 0.03em 0 white;
+	color:#4F2770;
 }
+
+
 
 
 #footer{
@@ -47,12 +54,26 @@ right: 0%;
 }
 
 #startButton{
+	width: 32%;
     height: 100%;
+	border-radius: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+	animation: glow 2.5s infinite;
+	
 }
-
+ @keyframes  glow {
+  0% {
+   	box-shadow: 0 0 40px 15px pink;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+   box-shadow: 0 0 40px 15px pink;
+  }
+}
 #gameButton{
     display: none;
 }
