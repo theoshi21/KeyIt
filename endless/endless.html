@@ -14,17 +14,27 @@
 	<div class="gameScreen">
 		<div class="gameHeader">
 			<div class="leftContent">
-					<div class="level">Level 1</div>
+					<div class="level" id="levelDisp"> Level 1 </div>
 			</div>
 			<div class="centerContent">
 					<div class="mode">ENDLESS <img src="skull.png" alt="life" class="skull"></div>
 			</div>
 			<div class="rightContent">
-					<div class="score">Score: 0000</div>
+				<div class="score" id="scoreDisp">Score: 0000</div>
 			</div>
 		</div>
-		<div class="gameBody">
-
+		<div id="gameBody">
+			<div id="time"><p id="countdown"></p></div>
+			<div id="btnContainer">
+				<div id="playBtn" onclick="startEndless()"><h1>PLAY</h1> </div>
+				<div id="restartBtn" onclick="restartGame()"><h1>RESTART</h1></div>
+			</div>
+			<div id="object"></div>
+			<div id="arrowContainer"><div id="arrow"></div> </div>
+			
+			<div id="typingContainer">
+				<div id="wordDisp"> </div>
+			</div>
 		</div>
 
 	</div>

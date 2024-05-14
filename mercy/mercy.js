@@ -1,3 +1,18 @@
+//---CATEGORy ANNOUNCER
+let categoryTime;
+var category = document.getElementById("category");
+var announce = document.getElementById("announce");
+function appearCategory(game){
+    category.style.display = "inline-block";
+    announce.innerText = game;
+    categoryTime = setTimeout(disappearCategory,1500); 
+}
+
+function disappearCategory(){
+    category.style.display = "none";
+}
+
+
 //--- FOR STARTING GAME
 var startTime, currentTime, endTime, running = true;
 var lives = 3;
@@ -138,6 +153,7 @@ function objectSize(){
 }
 
 function mouseGame(){
+    appearCategory("CLICK IT!")
     document.getElementById("object").innerHTML = "<div id='starImg' onclick='objectClick()'> </div>";
     objectRandomizer();
 }
@@ -175,6 +191,7 @@ function objectClick(){
 
 //--- TYPING CATEGORY
 function typingGame() {
+    appearCategory("TYPE IT!")
     document.getElementById("typingContainer").style.display = "flex";
     let words = [
         "pear", "fig", "lime", "kiwi", "plum", 
@@ -290,6 +307,7 @@ var sequence = 4;
 
 var arrowTimeout;
 function arrowGame() {
+    appearCategory("KEY IT!")
     arrowRandomizer();
     arrowTimeout = setTimeout(function() {
         document.removeEventListener('keydown', handleKeyPress);

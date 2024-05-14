@@ -1,7 +1,7 @@
 html{
     height:100%;
   }
-  
+
   body{
     background-image: url("bg.png");
     background-size: cover;
@@ -62,11 +62,27 @@ html{
   }
 
   #gameBody{
+    border: 1px solid white;
     width: 98%;
     height: 88%;
     color: white;
     display: flex;
     margin: auto;
+  }
+
+  #category{ 
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10vh;
+    width: 40vw;
+    z-index: 99;
+    color: white;
+    text-align: center;
+    font-family: "Press start 2P";
+    font-size: 4vh;
   }
 
   #typingContainer{
@@ -165,6 +181,11 @@ html{
       flex: 1;
       display: flex;
       margin: 0 8%;
+  }
+
+  .centerContent{
+    text-align: center;
+    justify-content: center;
   }
   
   .lives, .mode, .score {
