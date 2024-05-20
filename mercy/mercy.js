@@ -5,10 +5,11 @@ var announce = document.getElementById("announce");
 function appearCategory(game){
     category.style.display = "inline-block";
     announce.innerText = game;
-    categoryTime = setTimeout(disappearCategory,1500); 
+   categoryTime = setTimeout(disappearCategory, 1000); 
 }
 
 function disappearCategory(){
+	category.classList.add("fade-out");
     category.style.display = "none";
 }
 
@@ -256,8 +257,9 @@ function typingGame() {
             randomCategory();
         }, msTimeConverted+1000);
 
-        let input = event.target.value.trim();
-        let typedChar = input.charAt(input.length - 1);
+        let input = event.target.value.trim().toLowerCase(); // Convert input to lowercase
+		let typedChar = input.charAt(input.length - 1).toLowerCase(); // Convert typed character to lowercase
+		let currentWordLower = currentWord.toLowerCase(); // Convert displayed word to lowercase
         
         if (currentWord.startsWith(typedWord + typedChar)) {
             typedWord += typedChar;

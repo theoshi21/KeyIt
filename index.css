@@ -8,17 +8,30 @@ body{
     background-color: #4F2770;  
 }
 
-#stars{
-position: absolute;
-background: url(stars.png);
-background-size: cover;
-width: 100%;
-height: 100%;
-z-index: -1;
-top: 0px;
-left: 0px;
+
+
+ #stars{
+    position: absolute;
+    width: 100%;
+    right: 0px;
+	top: -15%;
+	z-index: -99;
+	user-select: none; /* Prevent text selection */
+   -webkit-user-drag: none; /* Prevent dragging on WebKit browsers (Chrome, Safari, etc.) */
+
+  }
+
+#playButton {
+  background-color: #008CBA; /* Play button color */
+  color: white; /* Play button text color */
+  padding: 10px 20px; /* Play button padding */
+  border: none;
+  cursor: pointer; /* Indicate clickable button */
 }
 
+#playButton.muted { /* Styles for mute state */
+  background-color: #ccc; /* Change color when muted */
+}
 
 .title{
     display: flex;
@@ -32,9 +45,31 @@ left: 0px;
     -0.03em 0.03em 0 white,
     0.03em 0.03em 0 white;
 	color:#4F2770;
+
 }
 
+.title span{
 
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  animation: bounce 1.5s infinite;
+  animation-delay: calc(.1s * var(--i));
+
+	
+}
+
+@keyframes bounce{
+ 0%, 40%, 100% {
+        transform: translateY(0);
+        color: #4F2770;
+    }
+    20% {
+        transform: translateY(-20px);
+        color: #9c8cb4;  
+    }
+} 
 
 
 #footer{
@@ -51,12 +86,14 @@ right: 0%;
     width: 50%;
     height: 25%;
     margin-top: 5vh;
+	z-index:99;
 }
 
 #startButton{
 	width: 32%;
     height: 100%;
 	border-radius: 40%;
+	z-index:99;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +114,9 @@ right: 0%;
 #gameButton{
     display: none;
 }
+
+
+
 
 #start{
     display: flex;
@@ -114,6 +154,7 @@ right: 0%;
     width: 17vw;
     height: 10vh;
     vertical-align: center;
+	  transition: transform 0.2s ease-in-out;
 }
 #mercy:hover{
     background: url(mercyClicked.png);
@@ -123,6 +164,8 @@ right: 0%;
     height: 10vh;
     color: var(--primaryColor);
     cursor: pointer;
+	  transform: scale(1.2);
+
 }
 
 #endless{
@@ -132,20 +175,23 @@ right: 0%;
     float: right;
     font-family: "Press start 2P";
     color: var(--textColor);
-    background: url(endlessButton.png);
+    background: url(endlessClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 17vw;
     height: 10vh;
+	transition: transform 0.2s ease-in-out;
 }
 #endless:hover{
-    background: url(endlessClicked.png);
+    background: url(endlessButton.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 17vw;
     height: 10vh;
     color: var(--primaryColor);
     cursor: pointer;
+	transform: scale(1.2);
+
 }
 
 
