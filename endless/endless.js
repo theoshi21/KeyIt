@@ -102,7 +102,7 @@ function endGame(){
     clearInterval(downloadTimer)
     clearInterval(gameProgression)
     document.getElementById("gameoverBody").style.display="block";
-    document.getElementById("score").innerHTML = "Score: "+score.toString().padStart(4,"0");
+    document.getElementById("score").innerHTML = "Score: "+endTime.toString().padStart(4,"0");
 }
 
 function no(){
