@@ -10,11 +10,7 @@ function appearCategory(game){
 }
 
 function disappearCategory(){
-<<<<<<< HEAD
 
-=======
-	category.classList.add("fade-out");
->>>>>>> e521bfce6a454ac6b7d4e00b6d1d77671fac914d
     category.style.display = "none";
 }
 

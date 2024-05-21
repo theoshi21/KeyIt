@@ -70,16 +70,12 @@ html{
     display: flex;
     margin: auto;
 
-<<<<<<< HEAD
   }
   
-=======
->>>>>>> e521bfce6a454ac6b7d4e00b6d1d77671fac914d
 #category {
   position: absolute;
   left: 0;
   right: 0;
-<<<<<<< HEAD
   margin-top: 40%;
   /* Adjust vertical position */
   margin-left: auto;
@@ -109,41 +105,6 @@ color: white;
 
 }
 
-=======
- // margin-top: 58vh; /* Adjust vertical position */
-  margin-left: auto;
-  margin-right: auto;
-  height: 10vh;
-  width: 40vw;
-  z-index: 99;
-  text-align: center;
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-
-
-#category.fade-out {
-  animation: fadeOut 0.5s linear; /* Adjust duration and timing function */
-}
-
-
-
-@keyframes textAnimation {
-  0% { transform: scale(1) translateY(0); color: lightcoral; opacity: 1; }
-  50% { transform: scale(1.1) translateY(-10%); color: lightgreen; opacity: 0.8; }
-  100% { transform: scale(1) translateY(0); color: lightblue; opacity: 1; }
-}
-
-#category h1 {
-  font-family: "Press start 2P";
-  font-size: 10vh;
-  animation: textAnimation 3s infinite alternate;
-}
->>>>>>> e521bfce6a454ac6b7d4e00b6d1d77671fac914d
 
 
   #typingContainer{
