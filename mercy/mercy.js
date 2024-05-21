@@ -40,7 +40,7 @@ playButton.addEventListener(
 
 //audio effects
 const buttonPress = new Audio("../audios/buttonPress.wav");
-const death = new Audio("../audios/death.mp3");
+const death = new Audio("../audios/death.wav");
 const damage = new Audio("../audios/damage.wav");
 const keyIT = new Audio("../audios/KeyIT.wav");
 const typeIT = new Audio("../audios/TypeIT.wav");
@@ -164,6 +164,7 @@ function random(max, min){
 
 //Ending the game
 function endGame(){
+    pauseAudio();
     death.play();
     running = false;
     endTime = currentTime;
@@ -206,8 +207,6 @@ function restartGame(){
     updateLife();
     document.getElementById("scoreDisp").innerHTML = "Score: 0000";
     document.getElementById("playBtn").style.display = "flex";
-	
-	pauseAudio();
 }
 
 //---END OF FUNCTIONS FOR BUTTONS
