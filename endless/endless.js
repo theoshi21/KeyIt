@@ -19,6 +19,8 @@ function disappearCategory(){
 var startTime, currentTime, endTime, alive = true;
 var lives = 3;
 function startEndless(){
+    buttonPress.play();
+    playAudio();
     startTimer();
     document.getElementById("btnContainer").style.display = "none";
     randomCategory();    
@@ -96,6 +98,7 @@ function random(max, min){
 
 //Ending the game
 function endGame(){
+    death.play();
     running = false;
     endTime = currentTime;
     clearInterval(timer);
@@ -106,6 +109,7 @@ function endGame(){
 }
 
 function no(){
+    buttonPress.play();
     window.location.href = "../index.html";
 }
 
@@ -130,15 +134,41 @@ var level = 1;
 
 //--- END OF GAME PROGRESSION
 
+//AUDIO
+const audioElement = document.getElementById("myAudio"); // Reference the audio element
+
+function playAudio() {
+  audioElement.currentTime = 0; // Restart from the beginning
+  audioElement.play();
+}
+
+function pauseAudio() {
+  audioElement.currentTime = 0; // Restart from the beginning
+  audioElement.pause();
+}
+
+//audio effects
+const buttonPress = new Audio("../audios/buttonPress.wav");
+const death = new Audio("../audios/death.mp3");
+const damage = new Audio("../audios/damage.wav");
+const keyIT = new Audio("../audios/KeyIT.wav");
+const typeIT = new Audio("../audios/TypeIT.wav");
+const clickIT = new Audio("../audios/ClickIT.wav");
+const point = new Audio("../audios/point.mp3");
+
+//END OF AUDIOS
+
 
 //---FUNCTIONS FOR BUTTONS
 function restartGame(){
+    buttonPress.play();
     startTime = null, currentTime = null, endTime = null, alive = true;
     level = 1;
     document.getElementById("scoreDisp").innerHTML = "Score: 0000";
     document.getElementById("levelDisp").innerHTML = "Level "+level;
     initialTime = 10;
     resetCountdown();
+    pauseAudio();
     document.getElementById("playBtn").style.display = "flex";
     document.getElementById("gameoverBody").style.display = "none";
 }
@@ -167,7 +197,8 @@ function objectSize(){
 }
 
 function mouseGame(){
-	    appearCategory("CLICK IT!")
+    clickIT.play();
+	appearCategory("CLICK IT!")
     document.getElementById("object").innerHTML = "<div id='starImg' onclick='objectClick()'> </div>";
     objectRandomizer();
 }
@@ -194,6 +225,7 @@ function objectDisappear(){
 
 //Function for when the object is clicked
 function objectClick(){
+    point.play();
     clearTimeout(objectTimer);
     resetCountdown();
     objectTimer = null;
@@ -205,6 +237,7 @@ function objectClick(){
 //--- TYPING CATEGORY
 
 function typingGame() {
+        typeIT.play();
 	   appearCategory("TYPE IT!")
     document.getElementById("typingContainer").style.display = "flex";
     let words = [
@@ -268,6 +301,7 @@ function typingGame() {
             wordDisplay.innerHTML = displayHTML;
 
             if (typedWord === currentWord) {
+                point.play();
                 wordDisplay.textContent = currentWord;
                 clearTyping();
                 clearTimeout(typingTimer);
@@ -318,6 +352,7 @@ var sequence = 4;
 
 var arrowTimeout;
 function arrowGame() {
+    keyIT.play();
     appearCategory("KEY IT!")
     arrowRandomizer();
     arrowTimeout = setTimeout(function() {
@@ -357,6 +392,7 @@ function handleKeyPress(event) {
             sequence--;
             removeArrow();
             if (sequence === 0) {
+                point.play();
                 document.removeEventListener('keydown', handleKeyPress);
                 clearTimeout(arrowTimeout); // Clear the timeout if the sequence is completed within time
                 console.log("Sequence completed within time");

@@ -38,12 +38,23 @@ playButton.addEventListener(
   }
 );
 
+//audio effects
+const buttonPress = new Audio("../audios/buttonPress.wav");
+const death = new Audio("../audios/death.mp3");
+const damage = new Audio("../audios/damage.wav");
+const keyIT = new Audio("../audios/KeyIT.wav");
+const typeIT = new Audio("../audios/TypeIT.wav");
+const clickIT = new Audio("../audios/ClickIT.wav");
+const point = new Audio("../audios/point.mp3");
+
+//--- END OF AUDIO
 
 
 //--- FOR STARTING GAME
 var startTime, currentTime, endTime, running = true;
 var lives = 3;
 function startMercy(){
+    buttonPress.play();
     updateLife();
     startTimer();
     document.getElementById("btnContainer").style.display = "none";
@@ -153,6 +164,7 @@ function random(max, min){
 
 //Ending the game
 function endGame(){
+    death.play();
     running = false;
     endTime = currentTime;
     clearInterval(timer);
@@ -161,7 +173,9 @@ function endGame(){
     document.getElementById("score").innerHTML = "Score: "+score.toString().padStart(4,"0");
 }
 
-function no(){}
+function no(){
+    window.location.href = "../index.html";
+}
 
 //--- END OF STARTING GAME
 
@@ -182,6 +196,7 @@ function no(){}
 
 //---FUNCTIONS FOR BUTTONS
 function restartGame(){
+    buttonPress.play();
     startTime = null, currentTime = null, endTime = null, running = true;
     lives = 3;
     initialTime = 10;
@@ -219,6 +234,7 @@ function objectSize(){
 }
 
 function mouseGame(){
+    clickIT.play();
     appearCategory("CLICK IT!")
     document.getElementById("object").innerHTML = "<div id='starImg' onclick='objectClick()'> </div>";
     objectRandomizer();
@@ -241,6 +257,7 @@ function objectDisappear(){
     resetCountdown();
     lives--;
     updateLife();
+    damage.play();
     object.style.display = "none";
     randomCategory();
 }
@@ -249,6 +266,7 @@ function objectDisappear(){
 function objectClick(){
     clearTimeout(objectTimer);
     addScore();
+    point.play();
     resetCountdown();
     objectTimer = null;
     object.style.display = "none";
@@ -258,6 +276,7 @@ function objectClick(){
 
 //--- TYPING CATEGORY
 function typingGame() {
+    typeIT.play();
     appearCategory("TYPE IT!")
     document.getElementById("typingContainer").style.display = "flex";
     let words = [
@@ -283,6 +302,7 @@ function typingGame() {
     let typedWord = '';
     let wordArray = currentWord.split('');
     let typingTimer = setTimeout(() => {
+        damage.play();
         lives--;
         updateLife();
         removeInput();
@@ -294,6 +314,7 @@ function typingGame() {
     document.getElementById("userInput").addEventListener("input", function(event) {
         clearTimeout(typingTimer);
         typingTimer = setTimeout(() => {
+            damage.play();
             lives--;
             updateLife();
             clearTyping();
@@ -326,12 +347,14 @@ function typingGame() {
             if (typedWord === currentWord) {
                 wordDisplay.textContent = currentWord;
                 addScore();
+                point.play();
                 clearTyping();
                 clearTimeout(typingTimer);
                 resetCountdown();
                 randomCategory();
             }
         } else {
+            damage.play();
             lives--;
             updateLife();
             clearTyping();
@@ -376,12 +399,14 @@ var sequence = 4;
 
 var arrowTimeout;
 function arrowGame() {
+    keyIT.play();
     appearCategory("KEY IT!")
     arrowRandomizer();
     arrowTimeout = setTimeout(function() {
         document.removeEventListener('keydown', handleKeyPress);
         console.log("Timeout: Sequence not completed within 10 seconds");
         sequence = 4;
+        damage.play();
         lives--;
         updateLife();
         removeArrow();
@@ -418,6 +443,7 @@ function handleKeyPress(event) {
             if (sequence === 0) {
                 document.removeEventListener('keydown', handleKeyPress);
                 addScore();
+                point.play();
                 clearTimeout(arrowTimeout); // Clear the timeout if the sequence is completed within time
                 console.log("Sequence completed within time");
                 sequence = 4;
@@ -429,6 +455,7 @@ function handleKeyPress(event) {
             }
         }, 50); // Adjust the delay as needed to allow the clicked image to be seen
     } else {
+        damage.play();
         document.removeEventListener('keydown', handleKeyPress);
         clearTimeout(arrowTimeout);
         lives--;
