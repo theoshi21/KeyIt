@@ -2,6 +2,13 @@
 let categoryTime;
 var category = document.getElementById("category");
 var announce = document.getElementById("announce");
+var highScore = 0;
+
+function hiscore(){
+    if (endTime > highScore){
+        highScore = endTime;
+    }
+}
 
 function appearCategory(game){
     category.style.display = "inline-block";
@@ -96,16 +103,20 @@ function random(max, min){
     return Math.floor((Math.random() * max)+min);
 }
 
+var score = 0;
 //Ending the game
 function endGame(){
     pauseAudio();
     death.play();
+    score = endTime;
     running = false;
     endTime = currentTime;
     clearInterval(timer);
     clearInterval(downloadTimer)
     clearInterval(gameProgression)
     document.getElementById("gameoverBody").style.display="block";
+    hiscore();
+    document.getElementById("highscore").innerHTML = "Highscore: "+highScore.toString().padStart(4,"0");
     document.getElementById("score").innerHTML = "Score: "+endTime.toString().padStart(4,"0");
 }
 

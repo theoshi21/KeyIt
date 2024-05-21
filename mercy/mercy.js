@@ -2,6 +2,13 @@
 let categoryTime;
 var category = document.getElementById("category");
 var announce = document.getElementById("announce");
+var highScore = 0;
+
+function hiscore(){
+    if (score > highScore){
+        highScore= score;
+    }
+}
 
 function appearCategory(game){
     category.style.display = "inline-block";
@@ -171,6 +178,8 @@ function endGame(){
     clearInterval(timer);
     clearInterval(downloadTimer)
 	document.getElementById("gameoverBody").style.display="block";
+    hiscore();
+    document.getElementById("highscore").innerHTML = "Highscore: "+highScore.toString().padStart(4,"0");
     document.getElementById("score").innerHTML = "Score: "+score.toString().padStart(4,"0");
 }
 
