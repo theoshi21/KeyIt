@@ -309,16 +309,16 @@ function removeInput() {
 
 //--- ARROW CATEGORY
 const arrowKeys = [
-    { key: 'ArrowLeft', image: '<img src="../resources/leftArrow.png" alt="leftArrow" class="arrowImage">' },
-    { key: 'ArrowDown', image: '<img src="../resources/downArrow.png" alt="downArrow" class="arrowImage">' },
-    { key: 'ArrowUp', image: '<img src="../resources/upArrow.png" alt="upArrow" class="arrowImage">' },
-    { key: 'ArrowRight', image: '<img src="../resources/rightArrow.png" alt="rightArrow" class="arrowImage">' }
+    { key: 'ArrowLeft', image: '<img src="../resources/leftArrow.png" alt="leftArrow" class="arrowImage">', clicked: '<img src="../resources/clicked_left.png" alt="leftArrow" class="arrowImage">' },
+    { key: 'ArrowDown', image: '<img src="../resources/downArrow.png" alt="downArrow" class="arrowImage">', clicked: '<img src="../resources/clicked_down.png" alt="downArrow" class="arrowImage">' },
+    { key: 'ArrowUp', image: '<img src="../resources/upArrow.png" alt="upArrow" class="arrowImage">', clicked: '<img src="../resources/clicked_up.png" alt="upArrow" class="arrowImage">' },
+    { key: 'ArrowRight', image: '<img src="../resources/rightArrow.png" alt="rightArrow" class="arrowImage">', clicked: '<img src="../resources/clicked_right.png" alt="rightArrow" class="arrowImage">' }
 ];
 var sequence = 4;
 
 var arrowTimeout;
 function arrowGame() {
-	appearCategory("KEY IT!")
+    appearCategory("KEY IT!")
     arrowRandomizer();
     arrowTimeout = setTimeout(function() {
         document.removeEventListener('keydown', handleKeyPress);
@@ -328,10 +328,10 @@ function arrowGame() {
         removeArrow();
         resetCountdown();
         randomCategory();
-    }, msTimeConverted+1000); // 10 seconds in milliseconds
+    }, msTimeConverted + 1000); // 10 seconds in milliseconds
 }
 
-function arrowRandomizer(){
+function arrowRandomizer() {
     document.removeEventListener('keydown', handleKeyPress);
     var arrowElement = document.getElementById("arrow");
     var arrowDisplayed = Math.floor(Math.random() * 4);
@@ -349,19 +349,24 @@ function handleKeyPress(event) {
         }
     }
     if (arrowDisplayed && pressedKey === arrowDisplayed.key) {
-        sequence--;
-        removeArrow();
-        if (sequence === 0) {
-            document.removeEventListener('keydown', handleKeyPress);
-            clearTimeout(arrowTimeout); // Clear the timeout if the sequence is completed within time
-            console.log("Sequence completed within time");
-            sequence = 4;
+        // Update the arrow to the clicked image
+        document.getElementById('arrow').innerHTML = arrowDisplayed.clicked;
+
+        // Set a small timeout to allow the clicked image to be shown before moving to the next arrow
+        setTimeout(() => {
+            sequence--;
             removeArrow();
-            resetCountdown();
-            randomCategory();
-        } else {
-            arrowRandomizer();
-        }
+            if (sequence === 0) {
+                document.removeEventListener('keydown', handleKeyPress);
+                clearTimeout(arrowTimeout); // Clear the timeout if the sequence is completed within time
+                console.log("Sequence completed within time");
+                sequence = 4;
+                resetCountdown();
+                randomCategory();
+            } else {
+                arrowRandomizer();
+            }
+        }, 50); // Adjust the delay as needed to allow the clicked image to be seen
     } else {
         document.removeEventListener('keydown', handleKeyPress);
         clearTimeout(arrowTimeout);
