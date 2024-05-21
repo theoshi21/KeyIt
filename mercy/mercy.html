@@ -11,7 +11,37 @@
 </head>
 
 <body>
+
+	<div id="gameoverBody">
+		<div class="black">	
+			<div class="gameover">
+				<h1 class="gameoverText"> 
+				<span class="game">GAME</span> 
+  <br> 	
+				<span class="over">OVER</span> 
+				</h1>
+
+		<div class="scoreEnd" id="score">Score: 0000</div>
+
+			<h4 class="pAgain">
+				Play Again?
+			</h4>
+
+		<div id="gameOverButton">
+		<div id="gameButton"> <!--pamodify na lang kelvin-->
+		<div id="yes" onclick="restartGame()"> <h1> YES </h1> </div>
+
+		<div id="no" onclick="no()"><h1>NO</h1> </div>
+		</div>
+		</div>
+
+
+			</div>
+		</div>
+	</div>
 	<div class="gameScreen">
+	
+	
 		<div class="gameHeader">
 			<div class="leftContent">
 					<div class="lives" id="life">Lives: <img src="heart.png" alt="life" class="heart"><img src="heart.png" alt="life" class="heart"><img src="heart.png" alt="life" class="heart"></div>
@@ -24,12 +54,16 @@
 			</div>
 
 		</div>
-		<div id="gameBody">
+		
 			<div id="category"> <h1 id="announce"> </h1> </div>
+		<div id="gameBody">
 			<div id="time"><p id="countdown"></p></div>
 			<div id="btnContainer">
-				<div id="playBtn" onclick="startMercy()"><h1>PLAY</h1> </div>
-				<div id="restartBtn" onclick="restartGame()"><h1>RESTART</h1></div>
+			
+	
+				<div id="playBtn" onclick="playCategoryAnimation(); startMercy()"><h1>PLAY</h1></div>
+					<audio id="myAudio" autoplay loop>  <source src="../audios/coupe.mp3" type="audio/mpeg">
+
 			</div>
 			<div id="object"></div>
 			<div id="arrowContainer"><div id="arrow"></div> </div>
@@ -37,7 +71,7 @@
 			<div id="typingContainer">
 				<div id="wordDisp"> </div>
 			</div>
-		</div>		
+		</div>
 		
 	</div>
 	<div id="footer"></div>

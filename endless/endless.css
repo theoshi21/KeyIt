@@ -5,6 +5,7 @@ html{
   body{
     background-image: url("endless.png");
     background-size: cover;
+	overflow: hidden;
   }
   
 
@@ -23,6 +24,20 @@ html{
     right: 0px;
     }
   
+  #gif-overlay{
+    position: absolute;
+
+    
+    width: 100%;
+    height: 80%;
+    top: 20%;
+    right: 0px;
+    z-index: 50;
+	user-select: none; /* Prevent text selection */
+   -webkit-user-drag: none; /* Prevent dragging on WebKit browsers (Chrome, Safari, etc.) */
+
+	 
+  }
   .gameScreen{
     width: 75vw;
     height: 75vh;
@@ -106,6 +121,7 @@ html{
 }
 
   #playBtn{
+	z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,6 +145,7 @@ html{
   }
 
   #restartBtn{
+	z-index: 99;
     display: none;
     justify-content: center;
     align-items: center;
@@ -161,7 +178,7 @@ html{
   #starImg{
     width: 100%;
     height: 100%;
-    background: url(../category/star.png);
+    background: url(../resources/star.png);
     background-size: cover;
     border: 0px;
     cursor: pointer;
@@ -169,7 +186,7 @@ html{
   }
 
   #starImg:hover{
-    background: url(../category/starClicked.png);
+    background: url(../resources/starClicked.png);
     background-size:cover;
     text-decoration: none;
   }
@@ -229,7 +246,7 @@ html{
   font-family: "press start 2p";
   width: 6vw;
   height: 11vh;
-  background: url(clock.png);
+  background: url(../resources/clock.png);
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 1;
@@ -247,6 +264,204 @@ html{
   font-size: 1.5rem;
 }
   
+  #category {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 40%;
+  /* Adjust vertical position */
+  margin-left: auto;
+  margin-right: auto;
+  height: 10vh;
+  width: 60vw;
+  z-index: 99;
+  text-align: center;
+
+
   
+}
+
+
+@keyframes textAnimation {
+  0%{ transform: translateY(100%);  opacity: 0;  } 
+  50% { transform: translateY(0);  opacity: 1; }
+ 100%  { transform: translateY(100%); opacity: 0;;} 
+}	
+
+#category h1.text-animation {
+  font-family: "Press start 2P";
+  font-size: 10vh;
+color: white;
+    opacity:0;
+    animation: textAnimation 1s ease-in;
+
+}
+
+/* Game over screen */
+.black {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 98; 
+}
+
+
+.gameover {
+border: solid white;
+position: absolute;
+transform:translate(2%, 5%);
+ background: url('../resources/gameover.jpg');
+ background-size:cover;
+background-repeat: no-repeat;
+ width: 95%;
+height: 90%;
+font-family: "Press start 2P";
+z-index: 99;
+}
+
+
+.gameoverText {
+margin-top: 3%;
+}
+
+.game, .over {
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+text-shadow: 10px 10px 0 #A4620B;
+}
+
+
+.scoreEnd{
+color: white;
+user-select:none;
+font-size: 15px;	
+margin-top: 3%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.game {
+font-size: 180px;
+opacity: 0; 
+animation: slideIn 1s ease-out forwards, blink 0.5s 1.5s infinite;
+}
+
+.over {
+font-size: 100px;
+opacity: 0; 
+animation: dropIn 1s 0.5s ease-out forwards, blink 0.5s 2s infinite;
+}
+
+@keyframes slideIn {
+0% {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+}
+
+@keyframes dropIn {
+0% {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+100% {
+  transform: translateY(0);
+  opacity: 1;
+}
+}
+
+@keyframes blink {
+0%, 100% {
+  opacity: 1;
+}
+50% {
+  opacity: 0;
+}
+}
+
+.pAgain{
+color: white;
+font-size: 35px;	
+margin-top: 2%;
+display: flex;
+justify-content: center;
+align-items: center;
+ text-shadow: 2px 2px 0 #F1D28F;
+}
+
+#yes, #no {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--textColor);
+  background: url(../resources/yesno.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: auto; 
+font-size:12px;
+  padding: 5px; 
+  margin: 0px; 
+  transition: transform 0.2s ease-in-out;
+}
+
+#yes {
+width: 20vw;
+  height: 10vh;
+  background-position: center; 
+}
+
+#yes:hover{
+
+  cursor: pointer;
+  transform: scale(1.2);
+
+}
+
+
+#no {
+width: 20vw;
+  height: 10vh;
+  background-position: center; 
+}
+
+
+#no:hover{
+
+  cursor: pointer;
+  transform: scale(1.2);
+
+}
+
+#gameOverButton{
+  display: flex; 
+  justify-content: space-between;
+  width: 80%;
+  height: 5%;
+ margin: 0 auto;
+
+  z-index: 99;
+}
+
+#gameButton {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+  height: 100%;
+}
+
+#gameoverBody { /*this is the ano kelvin, to display the kineme*/
+display:none;
+}
   
       

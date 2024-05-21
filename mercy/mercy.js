@@ -2,15 +2,42 @@
 let categoryTime;
 var category = document.getElementById("category");
 var announce = document.getElementById("announce");
+
 function appearCategory(game){
     category.style.display = "inline-block";
     announce.innerText = game;
-    categoryTime = setTimeout(disappearCategory,1500); 
+   categoryTime = setTimeout(disappearCategory, 1000); 
 }
 
 function disappearCategory(){
+
     category.style.display = "none";
 }
+
+
+//--- AUDIO
+
+const audioElement = document.getElementById("myAudio"); // Reference the audio element
+
+function playAudio() {
+  audioElement.currentTime = 0; // Restart from the beginning
+  audioElement.play();
+}
+
+function pauseAudio() {
+  audioElement.currentTime = 0; // Restart from the beginning
+  audioElement.pause();
+}
+
+const playButton = document.getElementById('playBtn');
+
+playButton.addEventListener(
+  'click', () => {
+    playAudio();
+    
+  }
+);
+
 
 
 //--- FOR STARTING GAME
@@ -22,6 +49,17 @@ function startMercy(){
     document.getElementById("btnContainer").style.display = "none";
     randomCategory();    
 }
+
+function playCategoryAnimation() {
+
+  var categoryText = document.getElementById("category").getElementsByTagName("h1")[0];
+
+
+  categoryText.style.opacity = 1;  
+
+  categoryText.classList.add("text-animation"); 
+}
+
 
 function updateLife(){
     var disp = "Lives: ";
@@ -90,7 +128,7 @@ function randomCategory(){
         endGame();
         document.getElementById("btnContainer").style.display = "flex";
         document.getElementById("playBtn").style.display = "none";
-        document.getElementById("restartBtn").style.display = "flex";
+
         document.getElementById("typingContainer").style.display = "none";
     }
 
@@ -119,7 +157,12 @@ function endGame(){
     endTime = currentTime;
     clearInterval(timer);
     clearInterval(downloadTimer)
-    alert("Game ended, your score was "+endTime);
+	document.getElementById("gameoverBody").style.display="block";
+    document.getElementById("score").innerHTML = "Score: "+score.toString().padStart(4,"0");
+}
+
+function no(){
+    window.location.href = "../index.html";
 }
 
 //--- END OF STARTING GAME
@@ -144,9 +187,14 @@ function restartGame(){
     startTime = null, currentTime = null, endTime = null, running = true;
     lives = 3;
     initialTime = 10;
+    score = 0;
+    document.getElementById("gameoverBody").style.display="none";
     resetCountdown();
+    updateLife();
+    document.getElementById("scoreDisp").innerHTML = "Score: 0000";
     document.getElementById("playBtn").style.display = "flex";
-    document.getElementById("restartBtn").style.display = "none";
+	
+	pauseAudio();
 }
 
 //---END OF FUNCTIONS FOR BUTTONS
@@ -256,8 +304,9 @@ function typingGame() {
             randomCategory();
         }, msTimeConverted+1000);
 
-        let input = event.target.value.trim();
-        let typedChar = input.charAt(input.length - 1);
+        let input = event.target.value.trim().toLowerCase(); // Convert input to lowercase
+		let typedChar = input.charAt(input.length - 1).toLowerCase(); // Convert typed character to lowercase
+		let currentWordLower = currentWord.toLowerCase(); // Convert displayed word to lowercase
         
         if (currentWord.startsWith(typedWord + typedChar)) {
             typedWord += typedChar;
@@ -320,10 +369,10 @@ function removeInput() {
 
 //--- ARROW CATEGORY
 const arrowKeys = [
-    { key: 'ArrowLeft', image: '<img src="leftArrow.png" alt="leftArrow" class="arrowImage">' },
-    { key: 'ArrowDown', image: '<img src="downArrow.png" alt="downArrow" class="arrowImage">' },
-    { key: 'ArrowUp', image: '<img src="upArrow.png" alt="upArrow" class="arrowImage">' },
-    { key: 'ArrowRight', image: '<img src="rightArrow.png" alt="rightArrow" class="arrowImage">' }
+    { key: 'ArrowLeft', image: '<img src="../resources/leftArrow.png" alt="leftArrow" class="arrowImage">' },
+    { key: 'ArrowDown', image: '<img src="../resources/downArrow.png" alt="downArrow" class="arrowImage">' },
+    { key: 'ArrowUp', image: '<img src="../resources/upArrow.png" alt="upArrow" class="arrowImage">' },
+    { key: 'ArrowRight', image: '<img src="../resources/rightArrow.png" alt="rightArrow" class="arrowImage">' }
 ];
 var sequence = 4;
 

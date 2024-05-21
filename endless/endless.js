@@ -1,3 +1,20 @@
+//---CATEGORy ANNOUNCER
+let categoryTime;
+var category = document.getElementById("category");
+var announce = document.getElementById("announce");
+
+function appearCategory(game){
+    category.style.display = "inline-block";
+    announce.innerText = game;
+   categoryTime = setTimeout(disappearCategory, 1000); 
+}
+
+function disappearCategory(){
+
+    category.style.display = "none";
+}
+
+
 //--- FOR STARTING GAME
 var startTime, currentTime, endTime, alive = true;
 var lives = 3;
@@ -6,6 +23,16 @@ function startEndless(){
     document.getElementById("btnContainer").style.display = "none";
     randomCategory();    
 }
+
+
+
+function playCategoryAnimation() {
+
+  var categoryText = document.getElementById("category").getElementsByTagName("h1")[0];
+  categoryText.style.opacity = 1;  
+  categoryText.classList.add("text-animation"); 
+}
+
 
 var initialTime = 10;
 var msTimeConverted = initialTime*1000;
@@ -44,7 +71,6 @@ function randomCategory(){
         endGame();
         document.getElementById("btnContainer").style.display = "flex";
         document.getElementById("playBtn").style.display = "none";
-        document.getElementById("restartBtn").style.display = "flex";
         document.getElementById("typingContainer").style.display = "none";
     }
 
@@ -74,7 +100,13 @@ function endGame(){
     endTime = currentTime;
     clearInterval(timer);
     clearInterval(downloadTimer)
-    alert("Game ended, your score was "+endTime);
+    clearInterval(gameProgression)
+    document.getElementById("gameoverBody").style.display="block";
+    document.getElementById("score").innerHTML = "Score: "+score.toString().padStart(4,"0");
+}
+
+function no(){
+    window.location.href = "../index.html";
 }
 
 //--- END OF STARTING GAME
@@ -103,11 +135,12 @@ var level = 1;
 function restartGame(){
     startTime = null, currentTime = null, endTime = null, alive = true;
     level = 1;
+    document.getElementById("scoreDisp").innerHTML = "Score: 0000";
     document.getElementById("levelDisp").innerHTML = "Level "+level;
     initialTime = 10;
     resetCountdown();
     document.getElementById("playBtn").style.display = "flex";
-    document.getElementById("restartBtn").style.display = "none";
+    document.getElementById("gameoverBody").style.display = "none";
 }
 
 //---END OF FUNCTIONS FOR BUTTONS
@@ -134,6 +167,7 @@ function objectSize(){
 }
 
 function mouseGame(){
+	    appearCategory("CLICK IT!")
     document.getElementById("object").innerHTML = "<div id='starImg' onclick='objectClick()'> </div>";
     objectRandomizer();
 }
@@ -169,7 +203,9 @@ function objectClick(){
 //--- END OF MOUSE CATEGORY CODE
 
 //--- TYPING CATEGORY
+
 function typingGame() {
+	   appearCategory("TYPE IT!")
     document.getElementById("typingContainer").style.display = "flex";
     let words = [
         "pear", "fig", "lime", "kiwi", "plum", 
@@ -273,15 +309,16 @@ function removeInput() {
 
 //--- ARROW CATEGORY
 const arrowKeys = [
-    { key: 'ArrowLeft', image: '<img src="leftArrow.png" alt="leftArrow" class="arrowImage">' },
-    { key: 'ArrowDown', image: '<img src="downArrow.png" alt="downArrow" class="arrowImage">' },
-    { key: 'ArrowUp', image: '<img src="upArrow.png" alt="upArrow" class="arrowImage">' },
-    { key: 'ArrowRight', image: '<img src="rightArrow.png" alt="rightArrow" class="arrowImage">' }
+    { key: 'ArrowLeft', image: '<img src="../resources/leftArrow.png" alt="leftArrow" class="arrowImage">' },
+    { key: 'ArrowDown', image: '<img src="../resources/downArrow.png" alt="downArrow" class="arrowImage">' },
+    { key: 'ArrowUp', image: '<img src="../resources/upArrow.png" alt="upArrow" class="arrowImage">' },
+    { key: 'ArrowRight', image: '<img src="../resources/rightArrow.png" alt="rightArrow" class="arrowImage">' }
 ];
 var sequence = 4;
 
 var arrowTimeout;
 function arrowGame() {
+	appearCategory("KEY IT!")
     arrowRandomizer();
     arrowTimeout = setTimeout(function() {
         document.removeEventListener('keydown', handleKeyPress);
