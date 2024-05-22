@@ -125,6 +125,10 @@ function no(){
     window.location.href = "../index.html";
 }
 
+function back(){
+    window.location.href = "../index.html";
+}
+
 //--- END OF STARTING GAME
 
 
@@ -290,9 +294,12 @@ function typingGame() {
             clearTimeout(typingTimer);
             randomCategory();
         }, msTimeConverted+1000);
-
-        let input = event.target.value.trim();
-        let typedChar = input.charAt(input.length - 1);
+		
+		
+		let input = event.target.value.trim().toLowerCase(); // Convert input to lowercase
+		let typedChar = input.charAt(input.length - 1).toLowerCase(); // Convert typed character to lowercase
+		let currentWordLower = currentWord.toLowerCase(); // Convert displayed word to lowercase
+        
         
         if (currentWord.startsWith(typedWord + typedChar)) {
             typedWord += typedChar;

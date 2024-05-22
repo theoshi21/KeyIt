@@ -33,7 +33,7 @@ function playAudio() {
 
 function pauseAudio() {
   audioElement.currentTime = 0; // Restart from the beginning
-  audioElement.pause();
+  audioElement.play();
 }
 
 const playButton = document.getElementById('playBtn');
@@ -187,6 +187,10 @@ function no(){
     window.location.href = "../index.html";
 }
 
+function back(){
+    window.location.href = "../index.html";
+}
+
 //--- END OF STARTING GAME
 
 
@@ -206,6 +210,7 @@ function no(){
 
 //---FUNCTIONS FOR BUTTONS
 function restartGame(){
+
     buttonPress.play();
     startTime = null, currentTime = null, endTime = null, running = true;
     lives = 3;

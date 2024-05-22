@@ -115,6 +115,34 @@ html{
     justify-content: center;
   }
 
+  #backBtn h1{
+    margin: 0;
+    font-size: 1vh;
+    color: white;
+}
+
+  #backBtn{
+	z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Press start 2P";
+    color: var(--textColor);
+    background: url(../endlessButton.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 8vw;
+    height: 5vh;
+    caret-color: transparent;
+    cursor: pointer;
+  }
+
+  #backBtn:hover{
+    background: url(../endlessClicked.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
   #playBtn h1{
     margin: 0;
     font-size: 4vh;
@@ -340,7 +368,7 @@ text-shadow: 10px 10px 0 #A4620B;
 color: white;
 user-select:none;
 font-size: 15px;	
-margin-top: 3%;
+margin-top: 1.5%;
 display: flex;
 justify-content: center;
 align-items: center;

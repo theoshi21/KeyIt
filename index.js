@@ -47,3 +47,25 @@ const point = new Audio("audios/point.mp3");
 
 //END OF AUDIOS
 
+//onscroll event
+document.addEventListener("DOMContentLoaded", function() {
+    var instructionsCont = document.querySelector('.instructions-cont');
+    var isInView = false;
+
+    function fadeInElement(entries, observer) {
+        entries.forEach(entry => {
+            if (!isInView && entry.isIntersecting) {
+                instructionsCont.style.opacity = 1;
+                instructionsCont.style.transform = 'translateY(0)';
+                isInView = true;
+            } else if (isInView && !entry.isIntersecting) {
+                instructionsCont.style.opacity = 0;
+                instructionsCont.style.transform = 'translateY(20px)';
+                isInView = false;
+            }
+        });
+    }
+
+    var observer = new IntersectionObserver(fadeInElement, { threshold: 0.5});
+    observer.observe(instructionsCont);
+});
