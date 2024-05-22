@@ -131,6 +131,7 @@ html{
     background: url(../endlessButton.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 8vw;
     height: 5vh;
     caret-color: transparent;
@@ -141,6 +142,7 @@ html{
     background: url(../endlessClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   #playBtn h1{
@@ -158,6 +160,7 @@ html{
     background: url(../playButton.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
     caret-color: transparent;
@@ -168,6 +171,7 @@ html{
     background: url(../playClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
   }
@@ -182,6 +186,7 @@ html{
     background: url(../playButton.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
     caret-color: transparent;
@@ -192,6 +197,7 @@ html{
     background: url(../playClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
   }
@@ -211,12 +217,14 @@ html{
     border: 0px;
     cursor: pointer;
     caret-color: transparent;
+    background-position: center;
   }
 
   #starImg:hover{
     background: url(../resources/starClicked.png);
     background-size:cover;
     text-decoration: none;
+    background-position: center;
   }
 
   /*CSS FOR TYPING GAME*/

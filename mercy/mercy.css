@@ -137,6 +137,7 @@ color: white;
     background: url(../playButton.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
     caret-color: transparent;
@@ -147,6 +148,7 @@ color: white;
     background: url(../playClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
   }
@@ -167,6 +169,7 @@ color: white;
     background: url(../endlessButton.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 8vw;
     height: 5vh;
     caret-color: transparent;
@@ -177,6 +180,7 @@ color: white;
     background: url(../endlessClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   #restartBtn{
@@ -188,6 +192,7 @@ color: white;
     background: url(../playButton.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
     caret-color: transparent;
@@ -198,6 +203,7 @@ color: white;
     background: url(../playClicked.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     width: 18vw;
     height: 5.5vw;
   }
@@ -214,6 +220,7 @@ color: white;
     height: 100%;
     background: url(../resources/star.png);
     background-size: cover;
+    background-position: center;
     border: 0px;
     cursor: pointer;
     caret-color: transparent;
@@ -223,6 +230,7 @@ color: white;
     background: url(../resources/starClicked.png);
     background-size:cover;
     text-decoration: none;
+    background-position: center;
   }
 
   .leftContent,
