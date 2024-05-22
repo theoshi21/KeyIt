@@ -308,11 +308,12 @@ color: white;
   position: absolute;
   color: rgb(94, 9, 20);
   font-family: "press start 2p";
-  width: 6vw;
-  height: 11vh;
-  background: url(clock.png);
-  background-size: contain;
+  width: 4vw;
+  height: 9vh;
+  background: url(../resources/clock.png);
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   z-index: 1;
 
 }
@@ -325,7 +326,7 @@ color: white;
   text-align: center;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.5vh;
 }
 
 
